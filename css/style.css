@@ -1,0 +1,34 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: grey;
+}
+header{
+    height: 50px;
+}
+
+.square{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: calc(100% / 10);
+    height: calc(100% / 10);
+    background-color: navy;
+    border: 1px solid grey;
+    color: white;
+}
+
+#grid{
+    max-width: 1250px;
+    height: 1250px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.clicked{
+    background-color: blue;
+}
