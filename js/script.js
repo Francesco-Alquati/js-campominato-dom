@@ -1,6 +1,20 @@
 // DICHIARO BOMBS
 let bombs;
 
+function getDifficultyMax(difficulty) {
+
+    switch (difficulty) {
+      case 1:
+        return 100; // Difficoltà Facile: Range 1-100
+      case 2:
+        return 81; // Difficoltà Media: Range 1-81
+      case 3:
+        return 49; // Difficoltà Difficile: Range 1-49
+      default:
+        alert(`Difficoltà non valida: ${difficulty}`);
+    }
+}
+
 // FUNZIONE CHE GENERA LE BOMBE
 function generateBombs(difficulty) {
     bombs = [];
@@ -8,19 +22,25 @@ function generateBombs(difficulty) {
 
     // GENERA 16 BOMBE CASUALI SENZA DUPLICATI
     for (let i = 0; i < 16; i++) {
+        
         do {
-          randomCell = Math.floor(Math.random() * (difficulty === 1 ? 100 : (difficulty === 2 ? 81 : 49)) + 1);
-        } while (bombs.includes(randomCell)); 
+            // Genera cella casuale nel range di difficoltà
+            randomCell = Math.floor(Math.random() * getDifficultyMax(difficulty)) + 1;
+        } while (bombs.indexOf(randomCell) !== -1); // Controlla duplicati
   
         //PUSHO NELL'ARRAY IN NUMERO CASUALE GENERATO SE NON è UN DUPLICATO
         bombs.push(randomCell);
     }
-  
+
+    bombs.sort((a, b) => a - b);
+    
     // STAMPO L'ARRAY IN CONSOLE
     console.log(`${bombs}`);
+
     return bombs;
 
 }
+
 // FUNZIONE CHE CREA Il SINGOLO QUADRATO DELLA GRIGLIA
 function createSquare(num, sideNumber){
 
@@ -80,7 +100,7 @@ function generateGrid(cellsNumber, sideNumber) {
     }
 }
 
-function createNewGame(bombs) {
+function createNewGame() {
 
     // RECUPERO IL LIVELLO DI DIFFICOLTA
     let difficulty = parseInt(document.getElementById('difficulty').value);
@@ -116,7 +136,16 @@ function createNewGame(bombs) {
         generateGrid(totalCells, sideCells);
 
         // RICHIAMO LA FUNZIONE CHE GENERQA LE BOMBE
-        generateBombs();
+        generateBombs(difficulty);
+        
+        // const clickedNumber = parseInt(this.innerText);
+
+        // if (bombs.includes(clickedNumber)){
+        //     grid.innerHTML = '';
+        //     alert('you lose')
+        // }else{
+        //     score++;
+        // }
         
     }
     else{
