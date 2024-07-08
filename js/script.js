@@ -41,14 +41,22 @@ function createSquare(num, sideNumber){
     // AGGIUNGO EVENTO CLICK ALLA CELLA
     square.addEventListener('click', function() {
 
-        // AGGIUNGO LA CLASSE AL CLICK
-        this.classList.add('clicked');
-       
+        const clickedNumber = parseInt(this.innerText);
 
+        if (bombs.includes(clickedNumber)){
+
+            // AGGIUNGO LA CLASSE AL CLICK SE TROVO LA BOMBA
+            this.classList.add('red');
+        }else{
+            
+            // AGGIUNGO LA CLASSE AL CLICK SE NON TROVO LA BOMBA
+            this.classList.add('clicked');
+        }
+       
         // STAMPO LA CELLA CLICCATA
         console.log(`cella cliccata ${this.innerText}`);
 
-        });
+    });
 
     // RESTITUISCO IL QUADRATO
     return square;
@@ -106,6 +114,9 @@ function createNewGame(bombs) {
 
         // DOBBIAMO GENERARE LE CASELLE
         generateGrid(totalCells, sideCells);
+
+        // RICHIAMO LA FUNZIONE CHE GENERQA LE BOMBE
+        generateBombs();
         
     }
     else{
