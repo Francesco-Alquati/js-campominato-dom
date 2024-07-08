@@ -4,18 +4,13 @@
     box-sizing: border-box;
 }
 body{
-    background-color: grey;
-}
-header{
-    height: 50px;
+    background-color: darkgrey;
 }
 
 .square{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: calc(100% / 10);
-    height: calc(100% / 10);
     background-color: navy;
     border: 1px solid grey;
     color: white;
@@ -28,7 +23,23 @@ header{
     display: flex;
     flex-wrap: wrap;
 }
-
+.b-shadow{
+    box-shadow: 0 5px 5px 0px grey;
+}
 .clicked{
     background-color: blue;
+}
+
+.s-695{
+    position: relative;
+    left: 695px;
+}
+
+.s-1100{
+    position: relative;
+    left: 1100px;
+}
+
+.bg-red{
+    background-color: red;
 }

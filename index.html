@@ -9,8 +9,14 @@
     <title>Campo-minato</title>
 </head>
 <body>
-    <header class="position-relative">
-        <button id="start" class="btn btn-dark position-absolute top-50 start-50 translate-middle"><i class="fa-solid fa-face-smile fa-xl" style="color: #FFD43B;"></i></button>
+    <header>
+        <button id="start" class="btn btn-dark s-695 mx-auto mt-3 mb-3 pe-auto b-shadow"><i class="fa-solid fa-face-smile fa-xl" style="color: #FFD43B;"></i></button>
+        <select id="difficulty" class="bg-dark text-white s-1100 p-2 rounded">
+            <option value="0">Seleziona livello di difficoltà</option>
+            <option value="1">easy</option>
+            <option value="2">medium</option>
+            <option value="3">hard</option>
+        </select>
     </header>
     <main class="mt-3">
         <div id="grid"></div>

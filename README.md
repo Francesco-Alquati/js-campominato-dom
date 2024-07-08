@@ -23,3 +23,11 @@ Ad esempio:
 Di cosa ho bisogno per generare i numeri?
 Proviamo sempre prima con dei console.log() per capire se stiamo ricevendo i dati giusti.
 Le validazioni e i controlli possiamo farli anche in un secondo momento.
+
+
+SUDDIVIDO IL PROBLEMA IN SOTTOPROBLEMI 
+
+1 - Creo una funzione per generare i numeri random
+2 - Creo una funzione per generare l'array di bombe 
+3 - aggiungo delle condizioni al click per cambiare colore in caso l'utente clicchi su una bomba
+4 - Restituisco a fine partita il punteggio dell'utente
