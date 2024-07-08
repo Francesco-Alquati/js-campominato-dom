@@ -1,3 +1,12 @@
+// DICHIARO BOMBS
+let bombs;
+
+// FUNZIONE CHE GENERA LE BOMBE
+function generateBombs(difficulty) {
+    bombs = [];
+    let randomCell;
+    
+}
 // FUNZIONE CHE CREA Il SINGOLO QUADRATO DELLA GRIGLIA
 function createSquare(num, sideNumber){
 
@@ -18,11 +27,12 @@ function createSquare(num, sideNumber){
     // AGGIUNGO EVENTO CLICK ALLA CELLA
     square.addEventListener('click', function() {
 
-        // AGGIUNGO LA CLASSE AL CLICK 
-        this.classList.toggle('clicked');
+        // AGGIUNGO LA CLASSE AL CLICK
+        this.classList.add('clicked');
+       
 
         // STAMPO LA CELLA CLICCATA
-        console.log(`cella cliccata: ${i + 1}`);
+        console.log(`cella cliccata ${this.innerText}`);
 
         });
 
@@ -48,7 +58,7 @@ function generateGrid(cellsNumber, sideNumber) {
     }
 }
 
-function createNewGame() {
+function createNewGame(bombs) {
 
     // RECUPERO IL LIVELLO DI DIFFICOLTA
     let difficulty = parseInt(document.getElementById('difficulty').value);
@@ -89,7 +99,6 @@ function createNewGame() {
     }
    
 }
-
 
 // RECUPERO IL BUTTON
 const btn = document.getElementById('start');
