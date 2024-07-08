@@ -5,7 +5,21 @@ let bombs;
 function generateBombs(difficulty) {
     bombs = [];
     let randomCell;
-    
+
+    // GENERA 16 BOMBE CASUALI SENZA DUPLICATI
+    for (let i = 0; i < 16; i++) {
+        do {
+          randomCell = Math.floor(Math.random() * (difficulty === 1 ? 100 : (difficulty === 2 ? 81 : 49)) + 1);
+        } while (bombs.includes(randomCell)); 
+  
+        //PUSHO NELL'ARRAY IN NUMERO CASUALE GENERATO SE NON è UN DUPLICATO
+        bombs.push(randomCell);
+    }
+  
+    // STAMPO L'ARRAY IN CONSOLE
+    console.log(`${bombs}`);
+    return bombs;
+
 }
 // FUNZIONE CHE CREA Il SINGOLO QUADRATO DELLA GRIGLIA
 function createSquare(num, sideNumber){
