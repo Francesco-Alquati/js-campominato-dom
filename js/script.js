@@ -1,6 +1,12 @@
 // DICHIARO BOMBS
 let bombs;
 
+// DICHIARO IL PUNTEGGIO
+let score = 0;
+
+let totalCells;
+let sideCells;
+
 function getDifficultyMax(difficulty) {
 
     switch (difficulty) {
@@ -26,7 +32,8 @@ function generateBombs(difficulty) {
         do {
             // Genera cella casuale nel range di difficoltà
             randomCell = Math.floor(Math.random() * getDifficultyMax(difficulty)) + 1;
-        } while (bombs.indexOf(randomCell) !== -1); // Controlla duplicati
+            // Controllo duplicati
+        } while (bombs.indexOf(randomCell) !== -1); 
   
         //PUSHO NELL'ARRAY IN NUMERO CASUALE GENERATO SE NON è UN DUPLICATO
         bombs.push(randomCell);
@@ -63,15 +70,22 @@ function createSquare(num, sideNumber){
 
         const clickedNumber = parseInt(this.innerText);
 
-        if (bombs.includes(clickedNumber)){
-
+        if (bombs.includes(clickedNumber)) {
             // AGGIUNGO LA CLASSE AL CLICK SE TROVO LA BOMBA
             this.classList.add('red');
-        }else{
+            alert(`hai perso, il tuo punteggio è: ${score}`);
             
+        } else{
             // AGGIUNGO LA CLASSE AL CLICK SE NON TROVO LA BOMBA
             this.classList.add('clicked');
+            score++;
+
+            if (score === (totalCells - 16)) {
+                alert(`Hai vinto! il tuo Punteggio è: ${score}`);
+               
+            }
         }
+      
        
         // STAMPO LA CELLA CLICCATA
         console.log(`cella cliccata ${this.innerText}`);
@@ -110,11 +124,7 @@ function createNewGame() {
         // SVUOTO LA GRIGLIA DA TUTTI I SUOI ELEMENTI
         grid.innerHTML = '';
 
-        // VALUTARE IL VALORE DI DIFFICOLTà, IN BASE AL VALORE AVRò UN NUMERO DI CASELLE PER LATO DIFFERENTE
-        let totalCells; 
-        let sideCells;
-
-        // SWITCH PER DETERMINARE I VALORI DELLE DUE VARIABILI SOPRA
+        // SWITCH PER DETERMINARE LA GRIGLIA IN BASE ALLA DIFFICOLTà
         switch (difficulty) {
             case 1:
                 totalCells = 100;
@@ -137,15 +147,6 @@ function createNewGame() {
 
         // RICHIAMO LA FUNZIONE CHE GENERQA LE BOMBE
         generateBombs(difficulty);
-        
-        // const clickedNumber = parseInt(this.innerText);
-
-        // if (bombs.includes(clickedNumber)){
-        //     grid.innerHTML = '';
-        //     alert('you lose')
-        // }else{
-        //     score++;
-        // }
         
     }
     else{
