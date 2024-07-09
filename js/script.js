@@ -27,22 +27,32 @@ function getDifficultyMax(difficulty) {
 
 // FUNZIONE CHE GENERA LE BOMBE
 function generateBombs(difficulty) {
-    bombs = [];
+    let bombs = [];
     let randomCell;
     const numbombs = 16;
 
-    // GENERA 16 BOMBE CASUALI SENZA DUPLICATI
-    for (let i = 0; i < numbombs; i++) {
+while(bombs.length < numbombs){
+        // Genera cella casuale nel range di difficoltà
+        randomCell = Math.floor(Math.random() * getDifficultyMax(difficulty)) + 1;
+        if(!bombs.includes(randomCell)){
+            //PUSHO NELL'ARRAY IN NUMERO CASUALE GENERATO SE NON è UN DUPLICATO
+            bombs.push(randomCell);
+        }
+}
+
+    
+    // // GENERA 16 BOMBE CASUALI SENZA DUPLICATI
+    // for (let i = 0; i < numbombs; i++) {
         
-        do {
-            // Genera cella casuale nel range di difficoltà
-            randomCell = Math.floor(Math.random() * getDifficultyMax(difficulty)) + 1;
-            // Controllo duplicati
-        } while (bombs.indexOf(randomCell) !== -1); 
+    //     do {
+    //         // Genera cella casuale nel range di difficoltà
+    //         randomCell = Math.floor(Math.random() * getDifficultyMax(difficulty)) + 1;
+    //         // Controllo duplicati
+    //     } while (bombs.indexOf(randomCell) !== -1); 
   
-        //PUSHO NELL'ARRAY IN NUMERO CASUALE GENERATO SE NON è UN DUPLICATO
-        bombs.push(randomCell);
-    }
+    //     //PUSHO NELL'ARRAY IN NUMERO CASUALE GENERATO SE NON è UN DUPLICATO
+    //     bombs.push(randomCell);
+    // }
 
     bombs.sort((a, b) => a - b);
     
@@ -160,7 +170,7 @@ function createNewGame() {
         generateGrid(totalCells, sideCells);
 
         // RICHIAMO LA FUNZIONE CHE GENERQA LE BOMBE
-        generateBombs(difficulty);
+        bombs = generateBombs(difficulty);
         
     }
     else{
