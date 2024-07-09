@@ -30,9 +30,9 @@ body{
     background-color: blue;
 }
 
-.s-695{
+.s-660{
     position: relative;
-    left: 695px;
+    left: 660px;
 }
 
 .s-1100{
@@ -42,4 +42,7 @@ body{
 
 .red{
     background-color: red;
+}
+.text-red{
+    color: red;
 }

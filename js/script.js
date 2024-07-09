@@ -4,9 +4,13 @@ let bombs;
 // DICHIARO IL PUNTEGGIO
 let score = 0;
 
+// DICHIARO LE VARIABILI PER LA CREAZIONE DELLE CELLE PER LIVELLO
 let totalCells;
 let sideCells;
 
+let gameOver = false;
+
+// FUNZIONE PER DETERMINARE UN MASSIMO DI CELLE PER LIVELLO
 function getDifficultyMax(difficulty) {
 
     switch (difficulty) {
@@ -25,9 +29,10 @@ function getDifficultyMax(difficulty) {
 function generateBombs(difficulty) {
     bombs = [];
     let randomCell;
+    const numbombs = 16;
 
     // GENERA 16 BOMBE CASUALI SENZA DUPLICATI
-    for (let i = 0; i < 16; i++) {
+    for (let i = 0; i < numbombs; i++) {
         
         do {
             // Genera cella casuale nel range di difficoltà
@@ -69,26 +74,35 @@ function createSquare(num, sideNumber){
     square.addEventListener('click', function() {
 
         const clickedNumber = parseInt(this.innerText);
+        let dom_score = document.getElementById('score')
 
-        if (bombs.includes(clickedNumber)) {
-            // AGGIUNGO LA CLASSE AL CLICK SE TROVO LA BOMBA
-            this.classList.add('red');
-            alert(`hai perso, il tuo punteggio è: ${score}`);
-            
-        } else{
-            // AGGIUNGO LA CLASSE AL CLICK SE NON TROVO LA BOMBA
-            this.classList.add('clicked');
-            score++;
+        if (gameOver === false && this.classList.contains('clicked') === false){
 
-            if (score === (totalCells - 16)) {
-                alert(`Hai vinto! il tuo Punteggio è: ${score}`);
-               
+            if (bombs.includes(clickedNumber)) {
+                // AGGIUNGO LA CLASSE AL CLICK SE TROVO LA BOMBA
+                this.classList.add('red');
+                gameOver = true;
+                dom_score.classList.remove('d-none');
+                dom_score.innerHTML = `hai perso, il tuo punteggio è: <span class="text-red">${score}</span>`;
+                
+            } else{
+                // AGGIUNGO LA CLASSE AL CLICK SE NON TROVO LA BOMBA
+                this.classList.add('clicked');
+                score++;
+    
+                if (score === (totalCells - 16)) {
+                    gameOver = true;
+                    dom_score.classList.remove('d-none');
+                    dom_score.innerHTML = `hai vinto, il tuo punteggio è: <span class="text-red">${score}</span>`;
+                   
+                }
             }
+          
+           
+            // STAMPO LA CELLA CLICCATA
+            console.log(`cella cliccata ${this.innerText}`);
         }
-      
-       
-        // STAMPO LA CELLA CLICCATA
-        console.log(`cella cliccata ${this.innerText}`);
+
 
     });
 
